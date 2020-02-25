@@ -10,6 +10,11 @@ module BushSlicer
       rr.dig('spec', 'replicas').to_i
     end
 
+    def machineset_name(user: nil, cached: true, quiet: false)
+      rr = raw_resource(user: user, cached: cached, quiet: quiet)
+      rr.dig('metadata', 'name')
+    end
+
     def available_replicas(user: nil, cached: true, quiet: false)
       rr = raw_resource(user: user, cached: cached, quiet: quiet)
       rr.dig('status', 'availableReplicas').to_i
