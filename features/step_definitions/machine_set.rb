@@ -4,6 +4,12 @@ Given(/^I pick a random machineset to scale$/) do
   cache_resources *machine_sets.shuffle
 end
 
+# use a specific machineset
+Given /^I use the "(.+?)" machineset$/ do |ms_name|
+  ensure_admin_tagged
+  machine_set(ms_name)
+end
+
 When(/^I scale the machineset to ([\+\-]?)#{NUMBER}$/) do | op, num |
   ensure_destructive_tagged
 
