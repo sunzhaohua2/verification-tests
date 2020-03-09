@@ -137,14 +137,14 @@ Feature: Cluster Autoscaler Tests
     """
 
     Given I use the "machineset-clone" machineset
-    And I wait up to 60 seconds for the steps to pass:
+    And I wait up to 120 seconds for the steps to pass:
     """
     the expression should be true> machine_set.desired_replicas(cached: false) == 3
     """
     Then the machineset should have expected number of running machines
 
     Given I use the "machineset-clone1" machineset
-    And I wait up to 60 seconds for the steps to pass:
+    And I wait up to 120 seconds for the steps to pass:
     """
     the expression should be true> machine_set.desired_replicas(cached: false) == 3
     """
@@ -161,14 +161,14 @@ Feature: Cluster Autoscaler Tests
  
     # Check cluster auto scales down
     Given I use the "machineset-clone" machineset
-    And I wait up to 120 seconds for the steps to pass:
+    And I wait up to 180 seconds for the steps to pass:
     """
     the expression should be true> machine_set.desired_replicas(cached: false) == 1
     """
     Then the machineset should have expected number of running machines
 
     Given I use the "machineset-clone1" machineset
-    And I wait up to 120 seconds for the steps to pass:
+    And I wait up to 180 seconds for the steps to pass:
     """
     the expression should be true> machine_set.desired_replicas(cached: false) == 1
     """
