@@ -27,7 +27,7 @@ When(/^I scale the machineset to ([\+\-]?)#{NUMBER}$/) do | op, num |
 end
 
 Then(/^the machineset should have expected number of running machines$/) do
-  machine_set.wait_till_ready(admin, 600)
+  machine_set.wait_till_ready(admin, 900)
 
   machines = BushSlicer::Machine.list(user: admin, project: project("openshift-machine-api"))
 
