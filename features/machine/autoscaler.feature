@@ -33,7 +33,7 @@ Feature: Cluster Autoscaler Tests
 
     # Create workload
     When I run the :create admin command with:
-      | f | <%= ENV['BUSHSLICER_HOME'] %>/testdata/cloud/autoscaler-auto-tmpl.yml |
+      | f | https://raw.githubusercontent.com/sunzhaohua2/v3-testfiles/localstorage/cloud/autoscaler-auto-tmpl.yml |
     Then the step should succeed
     And admin ensures "workload" job is deleted from the "openshift-machine-api" project after scenario
 
