@@ -331,22 +331,18 @@ Feature: Machine features testing
   # @author zhsun@redhat.com
   # @case_id OCP-34718
   @admin
-  @destructive
   Scenario: Node labels and Affinity definition in PV should match	
-    Given I have an IPI deployment 
-    And I switch to cluster admin pseudo user
-    And I use the "openshift-machine-api" project
-
+    Given I have a project
     # Create a pvc
     Given I obtain test data file "cloud/pvc-34718.yml"
-    When I run the :create admin command with:
+    When I run the :create client command with:
       | f | pvc-34718.yml |
     Then the step should succeed
     And admin ensures "pvc-cloud" pvc is deleted after scenario
 
     # Create a pod
     Given I obtain test data file "cloud/pod-34718.yml"
-    When I run the :create admin command with:
+    When I run the :create client command with:
       | f | pod-34718.yml |
     Then the step should succeed
     And admin ensures "task-pv-pod" pod is deleted after scenario
@@ -356,7 +352,7 @@ Feature: Machine features testing
     And I use the "<%= pod.node_name %>" node
     And evaluation of `node.region` is stored in the :default_region clipboard
     And evaluation of `node.zone` is stored in the :default_zone clipboard
-    When I run the :describe admin command with:
+    When I run the :describe client command with:
       | resource | pv |
     Then the step should succeed
     And the output should contain:
