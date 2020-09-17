@@ -333,6 +333,8 @@ Feature: Machine features testing
   @admin
   Scenario: Node labels and Affinity definition in PV should match	
     Given I have a project
+    Given cluster role "storage-admin" is added to the "first" user
+
     # Create a pvc
     Given I obtain test data file "cloud/pvc-34718.yml"
     When I run the :create client command with:
