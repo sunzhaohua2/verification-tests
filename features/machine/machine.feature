@@ -428,4 +428,26 @@ Feature: Machine features testing
 
     And the output should contain:
       | Forbidden: publicIP is not allowed in Azure disconnected installation |
+ 
+  # @author miyadav@redhat.com
+  # @case_id OCP-33047
+  @admin
+  @destructive
+  Scenario: Machine API Operator should go degraded if any pod controller is crash looping
+    Given I have an IPI deployment
+    When I switch to cluster admin pseudo user
+    Then I use the "openshift-machine-api" project
 
+    And I wait up to 300 seconds for the steps to pass:
+    """
+    Given a pod becomes ready with labels:
+      | api=clusterapi |
+      | k8s-app=controller |
+
+    When I run the :delete admin command with:
+      | object_type       | pod             |
+      | object_name_or_id | <%= pod.name %> |
+    And the step should succeed
+
+    And the expression should be true> cluster_operator('machine-api').condition(type: 'Degraded')['status'] == "True"
+    """
