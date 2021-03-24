@@ -1,5 +1,17 @@
 Feature: Cluster Autoscaler Tests
 
+   # @author jhou@redhat.com
+   # @case_id OCP-28108
+  @admin
+  @destructive
+  Scenario: Test create a windows machineset
+    Given I have an IPI deployment
+    And I switch to cluster admin pseudo user
+    And I use the "openshift-machine-api" project
+    And admin ensures machine number is restored after scenario
+
+    Given I clone a windows machineset and name it "machineset-windows"
+
   # @author jhou@redhat.com
   # @case_id OCP-28108
   @admin
