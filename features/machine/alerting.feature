@@ -1,6 +1,7 @@
 Feature: Alerting for machine-api
 
   # @author jhou@redhat.com
+  # @case_id OCP-26248
   @admin
   @destructive
   Scenario: Alert should be fired when operator is down
