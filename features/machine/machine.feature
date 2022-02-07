@@ -10,12 +10,12 @@ Feature: Machine features testing
     When I switch to cluster admin pseudo user
     Then I use the "openshift-machine-api" project
 
-     And I wait up to 180 seconds for the steps to pass:
+    And I wait up to 180 seconds for the steps to pass:
     """
     Given a pod becomes ready with labels:
       | api=clusterapi     |
       | k8s-app=controller |
-    And admin ensure "#{pod.name}" pod is deleted from the "openshift-machine-api" project
+    And admin ensure "<%= pod.name %>" pod is deleted from the "openshift-machine-api" project
     When evaluation of `cluster_operator('machine-api').condition(type: 'Degraded')` is stored in the :co_degraded
     Then the expression should be true> cb.co_degraded["status"]=="False"
     """
