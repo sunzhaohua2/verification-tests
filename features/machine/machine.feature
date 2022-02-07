@@ -1,5 +1,25 @@
 Feature: Machine features testing
 
+  # @author miyadav@redhat.com
+  # @case_id OCP-33047
+  @admin
+  @destructive
+  @4.6 @4.7 @4.8
+  Scenario: Machine API Operator should go degraded if any pod controller is crash looping
+    Given I have an IPI deployment
+    When I switch to cluster admin pseudo user
+    Then I use the "openshift-machine-api" project
+
+     And I wait up to 180 seconds for the steps to pass:
+    """
+    Given a pod becomes ready with labels:
+      | api=clusterapi     |
+      | k8s-app=controller |
+    And admin ensure "#{pod.name}" pod is deleted from the "openshift-machine-api" project
+    When evaluation of `cluster_operator('machine-api').condition(type: 'Degraded')` is stored in the :co_degraded
+    Then the expression should be true> cb.co_degraded["status"]=="False"
+    """
+
   # @author jhou@redhat.com
   # @case_id OCP-21196
   @smoke
