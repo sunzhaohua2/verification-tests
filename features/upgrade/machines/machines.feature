@@ -126,6 +126,7 @@ Feature: Machine-api components upgrade tests
   @upgrade-prepare
   @admin
   @destructive
+  @flaky
   @4.10 @4.9 @4.8
   Scenario Outline: Spot/preemptible instances should not block upgrade - prepare
     Given I have an IPI deployment
@@ -177,6 +178,7 @@ Feature: Machine-api components upgrade tests
   @upgrade-check
   @admin
   @destructive
+  @flaky
   @4.10 @4.9 @4.8
   Scenario Outline: Spot/preemptible instances should not block upgrade
     Given I have an IPI deployment
