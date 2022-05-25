@@ -220,8 +220,8 @@ Feature: Machine misc features testing
     Then the step should succeed
 
     When I run the :delete admin command with:
-      | object_type       | machine                |
-      | object_name_or_id | <%= cb.new_machine %>  |
+      | object_type       | machines.machine.openshift.io |
+      | object_name_or_id | <%= cb.new_machine %>         |
     Then the step succeeded
 
     Given a pod becomes ready with labels:

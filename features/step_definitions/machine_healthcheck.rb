@@ -14,7 +14,7 @@ When(/^I create the 'Ready' unhealthyCondition$/) do
   if env.version_le("4.3", user: user)
     step %Q{I run the :annotate client command with:}, table(%{
       | n            | openshift-machine-api                       |
-      | resource     | machine                                     |
+      | resource     | machines.machine.openshift.io                                     |
       | resourcename | #{machine.name}                             |
       | overwrite    | true                                        |
       | keyval       | machine.openshift.io/exclude-node-draining= |

@@ -27,10 +27,10 @@ When(/^I scale the machineset to ([\+\-]?)#{NUMBER}$/) do | op, num |
   end
 
   step %Q/I run the :scale admin command with:/, table(%{
-    | n        | openshift-machine-api   |
-    | resource | machineset              |
-    | name     | <%= machine_set.name %> |
-    | replicas | #{replicas.to_s}        |
+    | n        | openshift-machine-api            |
+    | resource | machinesets.machine.openshift.io |
+    | name     | <%= machine_set.name %>          |
+    | replicas | #{replicas.to_s}                 |
   })
 end
 

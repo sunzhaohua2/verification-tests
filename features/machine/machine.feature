@@ -124,21 +124,21 @@ Feature: Machine features testing
     And evaluation of `machine(cb.machine).provider_id` is stored in the :providerID clipboard
 
     When I run the :patch admin command with:
-      | resource      | machine                                |
+      | resource      | machines.machine.openshift.io          |
       | resource_name | <%= cb.machine %>                      |
       | p             | {"status":{"nodeRef":{"name":"test"}}} |
       | type          | merge                                  |
       | n             | openshift-machine-api                  |
     Then the step should succeed
     When I run the :describe admin command with:
-      | resource      | machine                                |
+      | resource      | machines.machine.openshift.io          |
       | name          | <%= cb.machine %>                      |
       | n             | openshift-machine-api                  |
     Then the step should succeed
     And the output should match "Name:\s+<%= cb.nodeRef_name %>"
 
     When I run the :patch admin command with:
-      | resource      | machine                                |
+      | resource      | machines.machine.openshift.io          |
       | resource_name | <%= cb.machine %>                      |
       | p             | {"spec":{"providerID":"invalid"}}      |
       | type          | merge                                  |
@@ -147,7 +147,7 @@ Feature: Machine features testing
     And I wait up to 30 seconds for the steps to pass:
     """
     When I run the :describe admin command with:
-      | resource      | machine                                |
+      | resource      | machines.machine.openshift.io          |
       | name          | <%= cb.machine %>                      |
       | n             | openshift-machine-api                  |
     Then the step should succeed
@@ -241,8 +241,8 @@ Feature: Machine features testing
 
     #Check machine and node were labelled as an `interruptible-instance`
     When I run the :describe admin command with:
-      | resource | machine                |
-      | name     | <%= cb.machine_name %> |
+      | resource | machines.machine.openshift.io |
+      | name     | <%= cb.machine_name %>        |
     Then the step should succeed
     And the output should match "machine.openshift.io/interruptible-instance"
     When I run the :describe admin command with:
@@ -388,8 +388,8 @@ Feature: Machine features testing
     """
 
     When I run the :describe admin command with:
-      | resource | machine                  |
-      | name     | <%= cb.machine_latest %> |
+      | resource | machines.machine.openshift.io |
+      | name     | <%= cb.machine_latest %>      |
     Then the step should succeed
     And the output should contain:
       | <Validation> |
@@ -476,8 +476,8 @@ Feature: Machine features testing
     """
 
     When I run the :describe admin command with:
-      | resource | machine                  |
-      | name     | <%= cb.machine_latest %> |
+      | resource | machines.machine.openshift.io |
+      | name     | <%= cb.machine_latest %>      |
     Then the step should succeed
     And the output should contain:
       | <Validation> |
@@ -595,7 +595,7 @@ Feature: Machine features testing
     And I wait up to 120 seconds for the steps to pass:
     """
     When I run the :get admin command with:
-      | resource | machine |
+      | resource | machines.machine.openshift.io |
     Then the step should succeed
     And the output should contain:
       | Provisioned  |
@@ -697,8 +697,8 @@ Feature: Machine features testing
     """
 
     When I run the :describe admin command with:
-      | resource | machine                  |
-      | name     | <%= cb.machine_latest %> |
+      | resource | machines.machine.openshift.io |
+      | name     | <%= cb.machine_latest %>      |
     Then the step should succeed
     And the output should contain:
       | <Validation> |

@@ -171,7 +171,7 @@ Feature: Machine-api components upgrade tests
       | f | <machineset_name>.yaml |
     Then the step should succeed
 
-    Given as admin I successfully merge patch resource "machineset/<machineset_name>" with:
+    Given as admin I successfully merge patch resource "machinesets.machine.openshift.io/<machineset_name>" with:
       | {"spec":{"replicas":1,"template":{"spec":{"providerSpec":{"value":{<value>}}}}}} |
 
     # Verify machine could be created successful
@@ -214,7 +214,7 @@ Feature: Machine-api components upgrade tests
     And I wait up to 300 seconds for the steps to pass:
     """
     When I run the :get admin command with:
-      | resource | machine                                      |
+      | resource | machines.machine.openshift.io                                      |
       | l        | machine.openshift.io/interruptible-instance= |
     Then the step should succeed
     And the output should not contain:

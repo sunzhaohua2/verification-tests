@@ -119,8 +119,8 @@ Feature: Cluster Autoscaler Tests
       | object_name_or_id | maotest           |
     Then the step succeeded
     When I run the :describe admin command with:
-      | resource | machineset              |
-      | name     | <%= machine_set.name %> |
+      | resource | machinesets.machine.openshift.io |
+      | name     | <%= machine_set.name %>          |
     Then the step should succeed
     And the output should not match "autoscaling.openshift.io/machineautoscaler"
 
@@ -162,12 +162,12 @@ Feature: Cluster Autoscaler Tests
     Then the step should succeed
     And the output should match "Name:\s+<%= cb.machineset_clone_22102_2 %>"
     When I run the :describe admin command with:
-      | resource | machineset                       |
+      | resource | machinesets.machine.openshift.io |
       | name     | <%= cb.machineset_clone_22102 %> |
     Then the step should succeed
     And the output should not match "autoscaling.openshift.io/machineautoscaler"
     When I run the :describe admin command with:
-      | resource | machineset                         |
+      | resource | machinesets.machine.openshift.io   |
       | name     | <%= cb.machineset_clone_22102_2 %> |
     Then the step should succeed
     And the output should match "Annotations:\s+autoscaling.openshift.io/machineautoscaler: openshift-machine-api/maotest0"
@@ -190,12 +190,12 @@ Feature: Cluster Autoscaler Tests
     Then the step should succeed
     And the output should match "Name:\s+<%= cb.machineset_clone_22102 %>"
     When I run the :describe admin command with:
-      | resource | machineset                       |
+      | resource | machinesets.machine.openshift.io |
       | name     | <%= cb.machineset_clone_22102 %> |
     Then the step should succeed
     And the output should match "Annotations:\s+autoscaling.openshift.io/machineautoscaler: openshift-machine-api/maotest1"
     When I run the :describe admin command with:
-      | resource | machineset                         |
+      | resource | machinesets.machine.openshift.io   |
       | name     | <%= cb.machineset_clone_22102_2 %> |
     Then the step should succeed
     And the output should not match "autoscaling.openshift.io/machineautoscaler"

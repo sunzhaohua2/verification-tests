@@ -156,7 +156,7 @@ Feature: MachineHealthCheck Test Scenarios
       | mhc-<%= machine_set.name %>-2: total targets: 1,  maxUnhealthy: 90%, unhealthy: 1. Short-circuiting remediation |
     """
     When I run the :describe admin command with:
-      | resource | machinehealthcheck/mhc-<%= machine_set.name %>-2 |
+      | resource | machinehealthchecks.machine.openshift.io/mhc-<%= machine_set.name %>-2 |
     Then the output should match:
       | Type.*RemediationAllowed |
 
