@@ -3,7 +3,7 @@ require 'openshift/cluster_resource'
 module BushSlicer
   # represents MachineSet
   class MachineSet < ProjectResource
-    RESOURCE = 'machinesets'
+    RESOURCE = 'machinesets.machine.openshift.io'
 
     def desired_replicas(user: nil, cached: true, quiet: false)
       rr = raw_resource(user: user, cached: cached, quiet: quiet)
