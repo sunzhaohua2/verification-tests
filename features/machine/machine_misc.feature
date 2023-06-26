@@ -180,13 +180,13 @@ Feature: Machine misc features testing
   @s390x @ppc64le @heterogeneous @arm64 @amd64
   @vsphere-ipi
   @vsphere-upi
-  Scenario: OCP-37180:ClusterInfrastructure Report vCenter version to telemetry
+  Scenario: OCP-:ClusterInfrastructure Report vCenter version to telemetry
     Given I switch to cluster admin pseudo user
     When I perform the GET prometheus rest client with:
       | path  | /api/v1/query?                         |
       | query | cloudprovider_vsphere_vcenter_versions |
     Then the step should succeed
-    And the expression should be true> @result[:parsed]["data"]["result"][0]["metric"]["version"] =~ /7.0/
+    And the expression should be true> @result[:parsed]["data"]["result"][0]["metric"]["version"] =~ /7.0|8.0/
 
   # @author miyadav@redhat.com
   # @case_id OCP-40665
