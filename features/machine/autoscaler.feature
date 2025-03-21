@@ -18,7 +18,6 @@ Feature: Cluster Autoscaler Tests
     Given I have an IPI deployment
     And I switch to cluster admin pseudo user
     And I use the "openshift-machine-api" project
-    And admin ensures machine number is restored after scenario
 
     And evaluation of `infrastructure("cluster").infra_name` is stored in the :infraName clipboard
     Given I clone a machineset and name it "<%= cb.infraName %>-28108"
