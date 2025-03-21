@@ -77,7 +77,6 @@ Given(/^I clone a( windows)? machineset and name it "([^"]*)"$/) do | os_type, m
   new_spec.delete("status")
 
   BushSlicer::MachineSetMachineOpenshiftIo.create(by: admin, project: project("openshift-machine-api"), spec: new_spec)
-  step %Q{admin ensures "#{ms_name}" machine_set_machine_openshift_io is deleted after scenario}
 
   machine_sets = BushSlicer::MachineSetMachineOpenshiftIo.list(user: admin, project: project("openshift-machine-api"))
   cache_resources *machine_sets.max_by(&:created_at)
